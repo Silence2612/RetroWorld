@@ -1,5 +1,24 @@
 {
+  "name": "retroworld",
+  "version": "1.0.0",
+  "description": "A platform for retro games",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
   "dependencies": {
-    "w4": "^0.0.16"
-  }
+    "ejs": "^3.1.10",
+    "express": "^4.21.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Silence2612/RetroWorld.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Silence2612/RetroWorld/issues"
+  },
+  "homepage": "https://github.com/Silence2612/RetroWorld#readme"
 }

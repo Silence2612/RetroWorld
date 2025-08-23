@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RetroWorld - About Us</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <video class="video-background" autoplay muted loop>
+        <source src="/media/background.mp4" type="video/mp4">
+    </video>
+    <div class="overlay"></div>
+
+    <audio id="bgMusic" class="audio-player" loop autoplay>
+        <source src="/media/background.mp3" type="audio/mpeg">
+    </audio>
+
+    <header>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/about" class="active">About Us</a>
+        </nav>
+    </header>
+
+    <main class="about-page">
+        <h1>About RetroWorld</h1>
+        <div class="about-content">
+            <div class="about-image-container">
+                <img src="/images/about_us.png" alt="About RetroWorld" class="about-image">
+            </div>
+            <section>
+                <h2>Our Mission</h2>
+                <p>RetroWorld is dedicated to bringing classic gaming experiences to modern audiences. We believe in preserving the nostalgia of retro games while making them accessible to everyone.</p>
+            </section>
+            
+            <section>
+                <h2>Our Team</h2>
+                <p>We are a passionate group of developers and gaming enthusiasts who work tirelessly to create and maintain these classic gaming experiences.</p>
+            </section>
+            
+            <section>
+                <h2>Contact Us</h2>
+                <p>Have questions or suggestions? We'd love to hear from you!</p>
+                <p>Email: contact@retroworld.com</p>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 RetroWorld. All rights reserved.</p>
+    </footer>
+
+    <style>
+        .audio-control {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .audio-control:hover {
+            transform: scale(1.1);
+            background: rgba(0, 0, 0, 0.9);
+        }
+
+        .audio-control i {
+            color: white;
+            font-size: 24px;
+        }
+
+        .about-image-container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            text-align: center;
+        }
+
+        .about-image {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .about-image:hover {
+            transform: scale(1.02);
+        }
+    </style>
+
+    <div class="audio-control" id="audioControl">
+        <i class="fas fa-play"></i>
+    </div>
+
+    <script>
+        const audio = document.getElementById('bgMusic');
+        audio.volume = 0.5;
+        
+        // Try to play audio on any user interaction
+        document.addEventListener('click', function() {
+            audio.play();
+        });
+    </script>
+</body>
+</html> 

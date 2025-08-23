@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Lost in the Maze</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <video class="video-background" autoplay muted loop>
+        <source src="/media/background.mp4" type="video/mp4">
+    </video>
+    <div class="overlay"></div>
+
+    <audio id="bgMusic" class="audio-player" loop>
+        <source src="/media/game.mp3" type="audio/mpeg">
+    </audio>
+
+    <header>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/about">About Us</a>
+        </nav>
+    </header>
+
+    <main class="error-container">
+        <div class="error-content">
+            <h1 class="error-code">404</h1>
+            <p class="error-message">You're Lost in the Maze</p>
+            <canvas id="gameCanvas" width="400" height="300"></canvas>
+            <p id="winMessage" style="display: none; color: #00ff00; margin: 1rem 0;">
+                🎉 You Escaped! <a href="/" style="color: #00ff00;">Go Home</a>
+            </p>
+            <p style="margin-top: 1rem;">
+                <a href="/" style="color: #e0e0e0; text-decoration: none;">
+                    🏠 Skip game and go home
+                </a>
+            </p>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 RetroWorld. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+
+        const tileSize = 20;
+        const rows = 15;
+        const cols = 20;
+
+        const maze = [
+            "####################",
+            "#S   #             #",
+            "### ### ##### ### ##",
+            "#     #     # #    #",
+            "# ### ### # # # ## #",
+            "# #   #   # # # #  #",
+            "# # ### ### ### ####",
+            "# #   #     #      #",
+            "# ### ### ### #### #",
+            "#   #   #   #  #   #",
+            "### # ### ### ## ###",
+            "#   #     #   #    #",
+            "# ### ### ### #### #",
+            "#     #     #    G #",
+            "####################"
+        ];
+
+        let player = { x: 1, y: 1 };
+
+        document.addEventListener('keydown', (e) => {
+            let newX = player.x;
+            let newY = player.y;
+            if (e.key === 'ArrowLeft') newX--;
+            if (e.key === 'ArrowRight') newX++;
+            if (e.key === 'ArrowUp') newY--;
+            if (e.key === 'ArrowDown') newY++;
+            if (maze[newY][newX] !== '#') {
+                player.x = newX;
+                player.y = newY;
+                if (maze[newY][newX] === 'G') {
+                    document.getElementById('winMessage').style.display = 'block';
+                }
+            }
+        });
+
+        function drawMaze() {
+            for (let y = 0; y < rows; y++) {
+                for (let x = 0; x < cols; x++) {
+                    if (maze[y][x] === '#') {
+                        ctx.fillStyle = "#444";
+                        ctx.fillRect(x * tileSize, y * tileSize, tileSize, tileSize);
+                    } else if (maze[y][x] === 'G') {
+                        ctx.fillStyle = "#ff4081";
+                        ctx.fillRect(x * tileSize, y * tileSize, tileSize, tileSize);
+                    }
+                }
+            }
+        }
+
+        function drawPlayer() {
+            ctx.fillStyle = "#00bcd4";
+            ctx.beginPath();
+            ctx.arc(player.x * tileSize + tileSize/2, player.y * tileSize + tileSize/2, tileSize/2 - 2, 0, Math.PI * 2);
+            ctx.fill();
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            drawMaze();
+            drawPlayer();
+        }
+
+        function gameLoop() {
+            draw();
+            requestAnimationFrame(gameLoop);
+        }
+
+        window.addEventListener('load', function() {
+            const audio = document.getElementById('bgMusic');
+            audio.volume = 0.2;
+            
+            // Play audio immediately
+            audio.play().catch(() => {
+                // If autoplay fails, try on first user interaction
+                document.addEventListener('click', () => {
+                    audio.play();
+                }, { once: true });
+            });
+
+            gameLoop();
+        });
+    </script>
+</body>
+</html>

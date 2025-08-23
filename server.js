@@ -52,11 +52,6 @@ app.get('/game-content/:id', (req, res) => {
     res.sendFile(path.join(__dirname, 'Games', 'HTML', game.htmlFile));
 });
 
-// 404 error handler (must be last)
-app.get('/404' , (req, res) => {
-    res.render('404'); // Assumes you have views/404.ejs
-});
-
 // Serve game content from the Games directory
 app.use('/Games', express.static(path.join(__dirname, 'Games')));
 

@@ -13,8 +13,8 @@
     </video>
     <div class="overlay"></div>
 
-    <audio id="bgMusic" class="audio-player" loop autoplay>
-        <source src="/media/background.mp3" type="audio/mpeg">
+    <audio id="bgMusic" class="audio-player" loop>
+        <source src="/media/game.mp3" type="audio/mpeg">
     </audio>
 
     <header>
@@ -53,28 +53,6 @@
     </footer>
 
     <style>
-        .audio-control {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: rgba(0, 0, 0, 0.7);
-            padding: 10px;
-            border-radius: 50%;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            z-index: 1000;
-        }
-
-        .audio-control:hover {
-            transform: scale(1.1);
-            background: rgba(0, 0, 0, 0.9);
-        }
-
-        .audio-control i {
-            color: white;
-            font-size: 24px;
-        }
-
         .about-image-container {
             width: 100%;
             max-width: 800px;
@@ -95,17 +73,18 @@
         }
     </style>
 
-    <div class="audio-control" id="audioControl">
-        <i class="fas fa-play"></i>
-    </div>
-
     <script>
-        const audio = document.getElementById('bgMusic');
-        audio.volume = 0.5;
-        
-        // Try to play audio on any user interaction
-        document.addEventListener('click', function() {
-            audio.play();
+        window.addEventListener('load', function() {
+            const audio = document.getElementById('bgMusic');
+            audio.volume = 0.2;
+            
+            // Play audio immediately
+            audio.play().catch(() => {
+                // If autoplay fails, try on first user interaction
+                document.addEventListener('click', () => {
+                    audio.play();
+                }, { once: true });
+            });
         });
     </script>
 </body>

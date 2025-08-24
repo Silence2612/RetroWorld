@@ -7,7 +7,7 @@
 - 🎲 **Retro gaming** with the [WASM-4](https://wasm4.org) fantasy console  
 - ⚡ **Full-stack app** built with **Node.js + Express + EJS**  
 - 🖥️ **Responsive HTML5/CSS** interface with dark theme styling  
-- 🎮 Support for **keyboard & gamepad inputs**, reset & fullscreen modes  
+- 🎮 Support for **keyboard inputs only**, reset & fullscreen modes  
 - 📦 **Dynamic routing** — each game page requests its **ID** and backend serves the correct precompiled cart  
 - 💾 Persistent saves using **localStorage**  
 

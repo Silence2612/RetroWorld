@@ -9,7 +9,6 @@
 - 🖥️ **Responsive HTML5/CSS** interface with dark theme styling  
 - 🎮 Support for **keyboard inputs only**, reset & fullscreen modes  
 - 📦 **Dynamic routing** — each game page requests its **ID** and backend serves the correct precompiled cart  
-- 💾 Persistent saves using **localStorage**  
 
 ---
 
